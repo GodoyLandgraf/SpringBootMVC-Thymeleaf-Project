@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link type="text/css" rel="stylesheet"
+	href="/materialize/css/materialize.css" media="screen,projection" />
+<link type="text/css" rel="stylesheet"
+	href="/materialize/css/materialize.min.css" media="screen,projection" />
+</head>
+<body>
+	<h3>SpringBoot + Thymeleaf + Material Design Lite</h3>
+	<br />
+		<h5>Cadastro de Pessoas</h5>		
+	 <a href="/cadastropessoa" class="btn waves-effect waves-light"> <i class="material-icons left">arrow_back</i>Voltar </a>
+	   
+	 
+	<div th:each="p : ${pessoaobj}">
+	<div class="row">
+	<p>ID: <span th:text="${p.id}"></span></p>
+		<p>Nome: <span th:text="${p.nome}"></span></p>
+		<p>Sobrenome: <span th:text="${p.sobrenome}"></span></p>
+			<p>Idade: <span th:text="${p.idade}"></span></p>
+	</div>
+	</div>
+
+	<script type="text/javascript" src="materialize/js/materialize.js"></script>
+	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+</body>
+</html>
