@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.css"  media="screen,projection"/>
@@ -19,10 +19,30 @@
 <label>Idade</label>
 <input name="idade" th:field="*{idade}">
   <button class="btn waves-effect waves-light" type="submit" name="action">Salvar
-  </button></form>
+  </button>
+  </form>
+ <br/>
+<br/>
 <a href="listapessoas">Listar Pessoas</a>
+<br/>
+<br/>
 
+<form action="pesquisarpessoa" method="post">
+<label>Pesquisa por nome:</label>
+<input name="nomepesquisa">
+<button type="submit" class="btn waves-effect waves-light">Buscar </button>
+</form>
+
+<br/>
+<br/>
 <table>
+<tr >Lista de Usuários Cadastrados</tr>
+<tr>
+<td>ID</td>
+<td>Nome</td>
+<td>Sobreome</td>
+<td>Idade</td>
+</tr>
   <tr th:each = "pessoa : ${pessoas}">
    <td th:text = "${pessoa.id}"></td>
    <td th:text = "${pessoa.nome}"></td>
