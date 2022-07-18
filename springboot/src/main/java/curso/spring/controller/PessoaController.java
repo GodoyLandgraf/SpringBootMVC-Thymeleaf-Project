@@ -55,4 +55,13 @@ public class PessoaController {
 		modelAndView.addObject("pessoaobj", pessoa.get());
 		return modelAndView;
 	}
+	
+	@GetMapping("/removerpessoa/{idpessoa}")
+	public ModelAndView excluir(@PathVariable("idpessoa") Long idpessoa) {
+		pessoaRepository.deleteById(idpessoa);
+		ModelAndView modelAndView = new ModelAndView("cadastro/cadastropessoa");
+		modelAndView.addObject("pessoas", pessoaRepository.findAll());
+		modelAndView.addObject("pessoaobj", new Pessoa());
+		return modelAndView;
+	}
 }

@@ -27,8 +27,11 @@
    <td th:text = "${pessoa.id}"></td>
    <td th:text = "${pessoa.nome}"></td>
    <td th:text = "${pessoa.sobrenome}"></td>
+   <td th:text = "${pessoa.idade}"></td>
    <td><a th:href="@{/editarpessoa/{idpessoa}(idpessoa=${pessoa.id})}">
    <i class="material-icons">edit</i></a></td>
+    <td><a th:href="@{/removerpessoa/{idpessoa}(idpessoa=${pessoa.id})}">
+   <i class="material-icons">delete</i></a></td>
   </tr>
  </table>
  
