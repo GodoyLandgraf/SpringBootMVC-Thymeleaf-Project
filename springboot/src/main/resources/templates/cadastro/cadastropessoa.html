@@ -17,7 +17,7 @@
 	<br />
 	<h5>Cadastro de Pessoas</h5>
 	<div class="row">
-		<form  class= "col s12" id="formpessoa" action="salvarpessoa" method="post" th:object="${pessoaobj}">
+		<form  class= "col s12" id="formpessoa" action="salvarpessoa" method="post" th:object="${pessoaobj}" th:onsubmit="return validarCampos()? true : false;">
 			<div class="row">
 				<div class="input-field col s6">
 					<label for="id" class="active">ID</label> <input name="id" th:field="*{id}"
@@ -98,5 +98,25 @@
 
 	<script type="text/javascript" src="materialize/js/materialize.js"></script>
 	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+	<script type="text/javascript">
+	function validarCampos(){
+	nome = document.getElementById('nome').value;
+	sobrenome = document.getElementById('sobrenome').value;
+	idade = document.getElementById('idade').value;
+	if(nome == ''){
+	alert('Nome deve ser informado')
+	return false;
+	}
+	else if(sobrenome == ''){
+		alert('Sobrenome deve ser informado')
+		return false;
+	}
+	else if (idade < 18){
+			alert('Idade inválida. Idade precisa ser maior de 18 anos')
+			return false;
+	}
+	return true;
+	}
+</script>
 </body>
 </html>
