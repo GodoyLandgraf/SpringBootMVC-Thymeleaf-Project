@@ -43,7 +43,7 @@ public class PessoaController {
 		return andView;
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/listapessoas")
+	@RequestMapping(method = RequestMethod.GET, value = "**/listapessoas")
 	public ModelAndView pessoas() {
 		ModelAndView andView = new ModelAndView("cadastro/cadastropessoa");
 		Iterable<Pessoa> pessoasIt = pessoaRepository.findAll();
