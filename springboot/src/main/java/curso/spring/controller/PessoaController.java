@@ -62,7 +62,7 @@ public class PessoaController {
 		return andView;
 	}
 	
-	@GetMapping("/editarpessoa/{idpessoa}")
+	@GetMapping("**/editarpessoa/{idpessoa}")
 	public ModelAndView editar(@PathVariable("idpessoa") Long idpessoa) {
 		Optional<Pessoa> pessoa = pessoaRepository.findById(idpessoa);
 		ModelAndView modelAndView = new ModelAndView("cadastro/cadastropessoa");
