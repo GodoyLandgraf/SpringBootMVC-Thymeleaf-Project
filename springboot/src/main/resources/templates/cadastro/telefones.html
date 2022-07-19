@@ -45,6 +45,24 @@
 	
 	</form>
 	</div>
+	<table class="highlight">
+	<thead>
+		<tr><h5>Lista de Telefones Cadastrados</h5></tr>
+		<tr>
+			<td>Número</td>
+			<td>Tipo</td>
+			<td>Excluir</td>
+		</tr>
+		</thead>
+	<tr th:each="fone : ${telefones}">
+	<td th:text="${fone.numero}"></td>
+	<td th:text="${fone.tipo}"></td>
+	<td><a
+				th:href="@{/removertelefone/{idtelefone}(idtelefone=${fone.id})}"> <i
+					class="material-icons">delete</i></a></td>
+	</tr>
+		
+	</table>
 
 	<script type="text/javascript" src="materialize/js/materialize.js"></script>
 	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
