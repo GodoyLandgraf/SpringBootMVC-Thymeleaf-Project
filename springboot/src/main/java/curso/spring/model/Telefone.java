@@ -1,6 +1,7 @@
 package curso.spring.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +21,7 @@ public class Telefone {
 	private String tipo;
 	
 	@JoinColumn(name="pessoa_id", nullable = false, foreignKey = @ForeignKey(name = "fk_pessoa_id"))
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Pessoa pessoa;
 
 	public Long getId() {

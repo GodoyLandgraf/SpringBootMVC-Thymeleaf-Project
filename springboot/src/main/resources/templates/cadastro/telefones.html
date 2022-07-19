@@ -27,6 +27,24 @@
 			<p>Idade: <span th:text="${p.idade}"></span></p>
 	</div>
 	</div>
+	
+	<h5>Telefones</h5>
+	<div class="row">
+	<form th:action="@{/addFonePessoa/{pessoaid}(pessoaid=${pessoaobj.id})}" method="post" class="col s12">
+	<div class="row">
+	<div class="input-field col s6">
+	<label class="active" for="numero">Número: </label>
+	<input id="numero" name="numero" class="validade">
+	</div>
+	<div class="input-field col s6">
+	<label class="active" for="tipo">Tipo: </label>
+	<input id="tipo" name="tipo" class="validade">
+	</div>
+	<input class="btn waves-effect waves-light" type="submit" value="Adicionar">
+	</div>
+	
+	</form>
+	</div>
 
 	<script type="text/javascript" src="materialize/js/materialize.js"></script>
 	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
