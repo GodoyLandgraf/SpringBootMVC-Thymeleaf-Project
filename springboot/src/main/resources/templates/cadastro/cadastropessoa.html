@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 <meta charset="UTF-8">
@@ -17,7 +18,7 @@
 	<br />
 	<h5>Cadastro de Pessoas</h5>
 	<div class="row">
-		<form  class= "col s12" id="formpessoa" action="salvarpessoa" method="post" th:object="${pessoaobj}" th:onsubmit="return validarCampos()? true : false;">
+		<form  sec:authorize="hasAnyRole('ADMIN', 'GERENTE')" class= "col s12" id="formpessoa" action="salvarpessoa" method="post" th:object="${pessoaobj}" th:onsubmit="return validarCampos()? true : false;">
 			<div class="row">
 				<div class="input-field col s6">
 					<label for="id" class="active">ID</label> <input name="id" th:field="*{id}"
@@ -33,6 +34,7 @@
 			<label for="sobrenome" class="active">Sobrenome</label> <input name="sobrenome"
 				th:field="*{sobrenome}" id="sobrenome" class="validate"> 
 			</div>
+			
 			<div class="input-field col s6">
 				<label for="idade" class="active">Idade</label> <input
 				name="idade" th:field="*{idade}" id="idade" class="validate">
@@ -45,7 +47,7 @@
 				</div>
 				
 				
-			<div class="input-field col s6">
+			<div class="input-field col s6" >
 			<button class="btn waves-effect waves-teal" onclick="document.getElementById('form').reset();">Novo</button>
 				</div>
 				</div>
