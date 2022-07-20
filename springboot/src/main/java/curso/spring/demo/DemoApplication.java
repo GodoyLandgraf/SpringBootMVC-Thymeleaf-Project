@@ -16,6 +16,10 @@ public class DemoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
+		
+		/*BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String result = encoder.encode("admin");
+		System.out.println(result);*/
 	}
 
 }
