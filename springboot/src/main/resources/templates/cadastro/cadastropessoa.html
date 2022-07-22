@@ -103,7 +103,7 @@
 			
 			
 			<div class="input-field col s6" >
-			<button class="btn waves-effect waves-teal" onclick="document.getElementById('formpessoa').reset();">Novo</button>
+			<a href="/cadastropessoa" class="btn waves-effect waves-teal" type="reset">Novo</a>
 				</div>
 				</div>
 				
@@ -180,17 +180,16 @@
 	nome = document.getElementById('nome').value;
 	sobrenome = document.getElementById('sobrenome').value;
 	idade = document.getElementById('idade').value;
-	
 	if(nome == ''){
-	alert('Nome deve ser informado')
+	alert('Nome deve ser informado');
 	return false;
 	}
 	else if(sobrenome == ''){
-		alert('Sobrenome deve ser informado')
+		alert('Sobrenome deve ser informado');
 		return false;
 	}
 	else if (idade < 18){
-			alert('Idade inválida. Idade precisa ser maior de 18 anos')
+			alert('Idade inválida. Idade precisa ser maior de 18 anos');
 			return false;
 	}
 	return true;
