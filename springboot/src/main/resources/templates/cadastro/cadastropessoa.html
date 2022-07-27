@@ -97,7 +97,27 @@
 				   <option value="FEMININO" th:text="Feminino"/>
 				 </select>
 			</div>
+			
+			<div class="input-field col s6">
+			 <label for="profissao" class="active">Profissões</label>
+				 <select class="browser-default" th:field="*{profissao}" id="profissao">
+				  <option value="" th:disabled selected>--[Selecione]--</option>
+				  <option th:each = "p : ${profissoes}" th:value="${p.id}" th:text="${p.nome}"></option>
+				 </select>
 			</div>
+			</div>
+			
+			<div class="row">
+			<div class="input-field col s6">
+			 <label for="cargo" class="active">Cargo</label>
+			<select class="browser-default" th:field="*{cargo}" id="cargo">
+		 				  <option value="" th:disabled selected>--[Selecione]--</option>
+		 
+		 <option th:each = "c : ${T(curso.spring.model.Cargo).values()}" th:value="${c}" th:text="${c.nome}"></option>
+			 </select>
+			</div>
+			</div>
+			
 
 
 			<div class="row">
