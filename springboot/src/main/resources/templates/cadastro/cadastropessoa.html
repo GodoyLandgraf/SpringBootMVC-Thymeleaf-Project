@@ -13,6 +13,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous"></script>
+             <style type="text/css">
+    form input[type=submit] {
+ color: white;
+}
+    </style>
             
 <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -115,7 +120,7 @@
 	<fieldset>
 	<legend><h5>Pesquisa</h5></legend>
 <div class="row">
-	<form action="pesquisarpessoa" method="post" class= "col s12">
+	<form action="pesquisarpessoa" method="post" class= "col s12" id="pesquisarpessoa">
 	<div class="row">
 	<div class="input-field col s6">
 		<label for="nomepesquisa" class="active">Pesquisa por nome:</label> <input id="nomepesquisa" class="validade" name="nomepesquisa">
@@ -133,12 +138,21 @@
 		
 		<div class="row">
 		<div class="input-field col s6">
-		<button type="submit" class="btn waves-effect waves-light">Buscar
-		</button>
-		</div>
-		<div class="input-field col s6">
+		<input class="waves-effect waves-light btn" type="submit"
+						value="Buscar">
 			<a href="listapessoas" class="btn waves-effect waves-light">Listar Todos Usuários</a>
 		</div>
+	
+	
+		<div class="input-field col s6">
+		<input class="waves-effect waves-light btn" type="submit"
+						value="PDF" onclick="document.getElementById('pesquisarpessoa').method = 'get'">
+		<br/>
+		<div>
+		<h6>(Para Gerar o pdf corretamente, insira os dados nos campos de pesquisa e clique em PDF)</h6>
+		</div>
+		</div>
+		
 		</div>
 		
 	</form>
