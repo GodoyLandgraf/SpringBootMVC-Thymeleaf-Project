@@ -1,5 +1,6 @@
 package curso.spring.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import curso.spring.model.Pessoa;
@@ -53,8 +55,27 @@ public class PessoaController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "**/salvarpessoa")
-	public ModelAndView salvar(Pessoa pessoa) {
+	@RequestMapping(method = RequestMethod.POST, value = "**/salvarpessoa", consumes = {"multipart/form-data"})
+	public ModelAndView salvar(Pessoa pessoa, final MultipartFile file) throws IOException {
+	
+		System.out.println(file.getContentType());
+		System.out.println(file.getOriginalFilename());
+
+		
+		if(file.getSize()>0) {
+			pessoa.setCurriculo(file.getBytes());
+			pessoa.setTipoFileCurriculo(file.getContentType());
+			pessoa.setNomeFileCurriculo(file.getOriginalFilename());
+		}else {
+			if(pessoa.getId()!= null && pessoa.getId()>0) {
+				Pessoa pessoaTemp = pessoaRepository.findById(pessoa.getId()).get();
+				pessoa.setCurriculo(pessoaTemp.getCurriculo());
+				pessoa.setTipoFileCurriculo(pessoaTemp.getTipoFileCurriculo());
+				pessoa.setNomeFileCurriculo(pessoaTemp.getNomeFileCurriculo());
+
+			}
+		}
+		
 		pessoaRepository.save(pessoa);
 		/* Quando clicar em salvar, vai aparecer a lista de pessoas cadastradas*/
 		ModelAndView andView = new ModelAndView("cadastro/cadastropessoa");
@@ -154,6 +175,27 @@ public class PessoaController {
 		modelAndView.addObject("pessoaobj", pessoa);
 		return modelAndView;
 	}
+	
+	@GetMapping("/baixarcurriculo/{idpessoa}")
+	public void baixarcurriculo(@PathVariable("idpessoa") Long idpessoa, HttpServletResponse response) throws IOException {
+		/*Consultar o objeto pessoa no banco de dados*/
+		Pessoa pessoa = pessoaRepository.findById(idpessoa).get();
+		if(pessoa.getCurriculo() != null) {
+			
+			//setar tamanho da resposta
+			response.setContentLength(pessoa.getCurriculo().length);
+			/*tipo do arquivo para download ou pode ser generica application/octet-stream*/
+			response.setContentType(pessoa.getTipoFileCurriculo());
+		//Define o cabeçalho da resposta
+			String headerKey = "Content-Disposition";
+			String headerValue = String.format("attachment; filename=\"%s\"", pessoa.getNomeFileCurriculo());
+			response.setHeader(headerKey, headerValue);
+			/*finaliza a resposa passando o arquivo*/
+			response.getOutputStream().write(pessoa.getCurriculo());
+		}
+	}
+	
+	
 	
 	@GetMapping("**/pesquisarpessoa")
 	public void imprimePdf(@RequestParam("nomepesquisa") String nomepesquisa, 

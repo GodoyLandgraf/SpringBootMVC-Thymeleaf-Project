@@ -12,6 +12,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -65,7 +66,39 @@ public class Pessoa implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
 	
+	@Lob
+	private byte[] curriculo;
 	
+	public void setCurriculo(byte[] curriculo) {
+		this.curriculo = curriculo;
+	}
+	
+	public byte[] getCurriculo() {
+		return curriculo;
+	}
+	
+	private String nomeFileCurriculo;
+	
+	private String tipoFileCurriculo;
+	
+	
+	
+	public String getNomeFileCurriculo() {
+		return nomeFileCurriculo;
+	}
+
+	public void setNomeFileCurriculo(String nomeFileCurriculo) {
+		this.nomeFileCurriculo = nomeFileCurriculo;
+	}
+
+	public String getTipoFileCurriculo() {
+		return tipoFileCurriculo;
+	}
+
+	public void setTipoFileCurriculo(String tipoFileCurriculo) {
+		this.tipoFileCurriculo = tipoFileCurriculo;
+	}
+
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
