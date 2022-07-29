@@ -21,6 +21,19 @@
     form input[type=submit] {
  color: white;
 }
+
+table{
+width:100%;
+}
+table th, table td {
+border:1px solid gray;
+text-align: center;
+}
+table th {
+background: #eee;
+}
+
+
     </style>
             
 <!-- Compiled and minified CSS -->
@@ -171,7 +184,7 @@
 	<form action="pesquisarpessoa" method="post" class= "col s12" id="pesquisarpessoa">
 	<div class="row">
 	<div class="input-field col s6">
-		<label for="nomepesquisa" class="active">Pesquisa por nome:</label> <input id="nomepesquisa" class="validade" name="nomepesquisa">
+		<label for="nomepesquisa" class="active">Pesquisa por nome:</label> <input id="nomepesquisa" th:value="${nomepesquisa}" class="validade" name="nomepesquisa">
 		</div>
 		
 		<div class="input-field col s6">
@@ -193,11 +206,11 @@
 	
 	
 		<div class="input-field col s6">
-		<input class="waves-effect waves-light btn" type="submit"
+		<input class="waves-effect waves-light btn validate" type="submit"
 						value="PDF" onclick="document.getElementById('pesquisarpessoa').method = 'get'">
 		<br/>
 		<div>
-		<h6>(Para Gerar o pdf corretamente, insira os dados nos campos de pesquisa e clique em PDF)</h6>
+		<h6>(Para Gerar o pdf, insira corretamente os dados nos campos de pesquisa e clique em PDF)</h6>
 		</div>
 		</div>
 		
@@ -221,7 +234,7 @@
 					<td>Excluir</td>
 		</tr>
 		</thead>
-		<tr th:each="pessoa : ${pessoas}">
+		<tr th:each="pessoa : ${pessoas.content}">
 			<td th:text="${pessoa.id}"></td>
 			<td><a th:href="@{/telefones/{idpessoa}(idpessoa=${pessoa.id})}"><span th:text="${pessoa.nome}"></span></a></td>
 			<td th:text="${pessoa.sobrenome}"></td>
@@ -237,6 +250,24 @@
 					class="material-icons">delete</i></a></td>
 		</tr>
 	</table>
+	
+	<div class="row" style="margin-top: 30px;">
+	<center>
+	
+	<span th:if="${pessoas.hasPrevious()}">
+	<a th:href="@{/pessoaspag(page=${pessoas.number-1}, size=${pessoas.size}, nomepesquisa=${nomepesquisa})}">Anterior</a>
+	</span>
+	
+	<th:block th:each="i: ${#numbers.sequence(0, pessoas.totalPages -1)}"> 
+	 <a th:href="@{/pessoaspag(page=${i}, size=${pessoas.size}, nomepesquisa=${nomepesquisa})}">[[ ${i} +1 ]]</a>
+	  </th:block>
+	  
+	 <span th:if="${pessoas.hasNext()}">
+	<a th:href="@{/pessoaspag(page=${pessoas.number+1}, size=${pessoas.size}, nomepesquisa=${nomepesquisa})}">Próximo</a>
+	</span>
+	
+	</center>
+	</div>
 
 	   <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
