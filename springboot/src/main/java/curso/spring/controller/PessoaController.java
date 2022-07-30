@@ -88,7 +88,7 @@ public class PessoaController {
 		return andView;
 	}
 	
-	@GetMapping("/pessoaspag")
+	@GetMapping("**/pessoaspag")
 	public ModelAndView carregaPessoaPorPaginacao(@PageableDefault(size = 5) Pageable pageable, ModelAndView model, @RequestParam("nomepesquisa") String nomepesquisa) {
 		Page<Pessoa> pagePessoa = pessoaRepository.findPessoaByNamePage(nomepesquisa, pageable);
 		model.addObject("pessoas", pagePessoa);

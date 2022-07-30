@@ -7,28 +7,45 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<style type="text/css">
+form{
+margin-left:35%;
+margin-top:15%;
+
+}
+
+.col .row {
+margin-right: 0rem;
+}
+
+.btn{
+margin-top:-40px;
+padding: 0 40px;
+}
+</style>
+
 </head>
 <body>
 
 <form th:action="@{/login}" method="post" class="col s12">
-<h1>Acesso ao Sistema</h1>
+<h5>Acesso ao Sistema</h5>
 <div class="row">
 <div class="input-field col s6">
-<label>Login</label>
-<input type="text" name="username">
+<label style="margin-left: 5px;" class="validate">Login</label>
+<input type="text" name="username" style= "border-radius: 10px; padding: 0 8px";>
 </div>
 </div>
 <div class="row">
 <div class="input-field col s6">
-<label>Senha</label>
-<input type="password" name="password">
+<label style="margin-left: 5px;">Senha</label>
+<input type="password" name="password" style= "border-radius: 10px; padding: 0 8px";>
 </div>
 </div>
 
 
 <div class="row" >
 <div class="input-field col s6">
-			<button class="btn waves-effect waves-teal" type="submit" value="Logar">Logar</button>
+			<button class="btn waves-effect waves-teal " type="submit" value="Logar">Logar</button>
 				</div>
 				</div>
 
