@@ -163,7 +163,7 @@ public class PessoaController {
 			if (telefone.getNumero().isEmpty()) {
 				msg.add("Numero deve ser informado");
 			}
-			if (telefone.getTipo().isBlank()) {
+			if (telefone.getTipo().isEmpty()) {
 				msg.add("Tipo deve ser informado");
 			}
 			modelAndView.addObject("msg", msg);
